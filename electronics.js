@@ -6,9 +6,18 @@ async function fetchdata()
 {
     let res = await fetch(api);
     let data = await res.json();
+    newData = data.filter(getElectronics)
     
-    renderList(data);
+    renderList(newData);
 }
+
+function getElectronics(data)
+{
+    if (data.category == "electronics"){
+        return true;
+    }
+}
+
 
 function renderList(data)
 {

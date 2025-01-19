@@ -6,9 +6,18 @@ async function fetchdata()
 {
     let res = await fetch(api);
     let data = await res.json();
+    newData = data.filter(getMen)
     
-    renderList(data);
+    renderList(newData);
 }
+
+function getMen(data)
+{
+    if (data.category == "men's clothing"){
+        return true;
+    }
+}
+
 
 function renderList(data)
 {
