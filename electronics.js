@@ -38,13 +38,27 @@ function renderList(data)
                 <p class="text-sm text-gray-500">Rating: ${item.rating.rate}</p>
             </div>
             <div class="h-10 m-2">    
-                <button class="bg-blue-400  text-white p-1 rounded-md">Add to Cart</button>
+                <button onclick="addToCart(${item.id})" class="bg-blue-400  text-white p-1 rounded-md">Add to Cart</button>
             </div>
         </div>
 
         `
         container.appendChild(div)
     })
+}
+
+function addToCart(productId) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existingItem = cart.find(item => item.id === productId);
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        cart.push({ id: productId, quantity: 1 });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Product added to cart!");
 }
 
 

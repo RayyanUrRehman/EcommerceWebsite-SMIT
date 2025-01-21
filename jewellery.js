@@ -6,14 +6,14 @@ async function fetchdata()
 {
     let res = await fetch(api);
     let data = await res.json();
-    newData = data.filter(getMen)
+    newData = data.filter(getJewellery)
     
     renderList(newData);
 }
 
-function getMen(data)
+function getJewellery(data)
 {
-    if (data.category == "men's clothing"){
+    if (data.category == "jewelery"){
         return true;
     }
 }
